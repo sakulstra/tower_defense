@@ -4,20 +4,24 @@ using UnityEngine;
 
 public class MovementController : MonoBehaviour {
 
-    public float speed = 3.0f;
     public int playernumber = 1;
 
-	// Use this for initialization
-	void Start () {
+    private float running;
+    private float defaultSpeed = 3.0f;
+
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        transform.position += new Vector3(
-            speed * Time.deltaTime * Input.GetAxis("Horizontal" + playernumber),
+        float speed = this.defaultSpeed;
+        Vector3 newPos = new Vector3(
+            speed * Time.deltaTime * Input.GetAxis("Horizontal_" + this.playernumber),
             0,
-            speed * Time.deltaTime * Input.GetAxis("Vertical" + playernumber)
+            speed * Time.deltaTime * Input.GetAxis("Vertical_" + this.playernumber)
         );
+        transform.position += newPos;
     }
 }
